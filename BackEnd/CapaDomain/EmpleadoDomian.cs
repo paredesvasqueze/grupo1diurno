@@ -3,21 +3,21 @@ using CapaDatos;
 
 namespace CapaDomain
 {
-    public class AlumnoDomain
+    public class EmpleadoDomain
     {
-        private readonly AlumnoRepository _alumnoRepository;
+        private readonly EmpleadoRepository _EmpleadoRepository;
 
-        public AlumnoDomain(AlumnoRepository alumnoRepository)
+        public EmpleadoDomain(EmpleadoRepository EmpleadoRepository)
         {
            
-                _alumnoRepository = alumnoRepository;     
+                _EmpleadoRepository = EmpleadoRepository;     
         }
 
-        public IEnumerable<Alumno> ObtenerAlumnoTodos()
+        public IEnumerable<Empleado> ObtenerEmpleadoTodos()
         {
             try
             {
-                return _alumnoRepository.ObtenerAlumnoTodos();
+                return _EmpleadoRepository.ObtenerEmpleadoTodos();
             }
             catch (Exception)
             {
@@ -27,11 +27,11 @@ namespace CapaDomain
            
         }
 
-        public int InsertarAlumno(Alumno oAlumno)
+        public int InsertarEmpleado(Empleado oEmpleado)
         {
             try
             {
-                return _alumnoRepository.InsertarAlumno(oAlumno);
+                return _EmpleadoRepository.InsertarEmpleado(oEmpleado);
             }
             catch (Exception)
             {

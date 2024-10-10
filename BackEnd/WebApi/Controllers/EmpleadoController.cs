@@ -6,26 +6,26 @@ namespace WebApi.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class AlumnoController : ControllerBase
+    public class EmpleadoController : ControllerBase
     {
-        private readonly AlumnoDomain _alumnoDomain;
+        private readonly EmpleadoDomain _EmpleadoDomain;
 
-        public AlumnoController(AlumnoDomain alumnoDomain)
+        public EmpleadoController(EmpleadoDomain EmpleadoDomain)
         {
-            _alumnoDomain = alumnoDomain;
+            _EmpleadoDomain = EmpleadoDomain;
         }
 
-        [HttpGet("ObtenerAlumnoTodos")]
-        public IActionResult ObtenerAlumnoTodos()
+        [HttpGet("ObtenerEmpleadoTodos")]
+        public IActionResult ObtenerEmpleadoTodos()
         {
-            var alumnos = _alumnoDomain.ObtenerAlumnoTodos();
-            return Ok(alumnos);
+            var Empleados = _EmpleadoDomain.ObtenerEmpleadoTodos();
+            return Ok(Empleados);
         }
 
-        [HttpPost("InsertarAlumno")]
-        public IActionResult InsertarAlumno(Alumno oAlumno)
+        [HttpPost("InsertarEmpleado")]
+        public IActionResult InsertarEmpleado(Empleado oEmpleado)
         {
-            var id = _alumnoDomain.InsertarAlumno(oAlumno);
+            var id = _EmpleadoDomain.InsertarEmpleado(oEmpleado);
             return Ok(id);
         }
     }

@@ -11,46 +11,80 @@ using Dapper;
 
 namespace CapaDatos
 {
-    public class AlumnoRepository
+    public class Empleado
     {
         private readonly ConexionSingleton _conexionSingleton;
 
         // Constructor que recibe el singleton de conexión
-        public AlumnoRepository(ConexionSingleton conexionSingleton)
+        public Empleado(ConexionSingleton conexionSingleton)
         {
             _conexionSingleton = conexionSingleton;
         }
 
-        // Método para obtener una lista de alumnos
-        public IEnumerable<Alumno> ObtenerAlumnoTodos()
+        // Método para obtener una lista de Empleados
+        public IEnumerable<Empleado> ObtenerEmpleadoTodos()
         {
-            var alumnos = new List<Alumno>();
+            var Empleados = new List<Empleado>();
 
             using (var connection = _conexionSingleton.GetConnection())
             {
                 connection.Open();
-                IEnumerable<Alumno> lstFound = new List<Alumno>();
-                var query = "USP_GET_Alumno_Todos";
+                IEnumerable<Empleado> lstFound = new List<Empleado>();
+                var query = "USP_GET_Empleado_Todos";
                 var param = new DynamicParameters();
                 //param.Add("@nConstGrupo", nConstGrupo, dbType: DbType.Int32);
-                lstFound = SqlMapper.Query<Alumno>(connection, query, param, commandType: CommandType.StoredProcedure);
+                lstFound = SqlMapper.Query<Empleado>(connection, query, param, commandType: CommandType.StoredProcedure);
                 return lstFound;              
                 
             }
         }
 
-        public int InsertarAlumno(Alumno oAlumno)
+        public int InsertarEmpleado(Empleado oEmpleado)
         {
             using (var connection = _conexionSingleton.GetConnection())
             {
                 connection.Open();
                 
-                var query = "USP_Insert_Alumno";
+                var query = "USP_Insert_Empleado";
                 var param = new DynamicParameters();
-                param.Add("@cNombre", oAlumno.cNombre);
-                param.Add("@cApellido", oAlumno.cApellido);
-                param.Add("@dFechaNacimiento", oAlumno.dFechaNacimiento);                
+                param.Add("@nIdEmpleado", oEmpleado.nIdEmpleado);
+                param.Add("@cNombre", oEmpleado.cNombre);
+                param.Add("@cApellido", oEmpleado.cApellido);
+                param.Add("@dFechaContratacion", oEmpleado.dFechaContratacion);                
                 return (int)SqlMapper.ExecuteScalar(connection, query, param, commandType: CommandType.StoredProcedure);                
+            }
+
+
+        }
+
+        public int ActualizarEmpleado(Empleado oEmpleado)
+        {
+            using (var connection = _conexionSingleton.GetConnection())
+            {
+                connection.Open();
+
+                var query = "USP_Update_Empleado";
+                var param = new DynamicParameters();
+                param.Add("@nIdEmpleado", oEmpleado.nIdEmpleado);
+                param.Add("@cNombre", oEmpleado.cNombre);
+                param.Add("@cApellido", oEmpleado.cApellido);
+                param.Add("@dFechaContratacion", oEmpleado.dFechaContratacion);
+                return (int)SqlMapper.ExecuteScalar(connection, query, param, commandType: CommandType.StoredProcedure);
+            }
+
+
+        }
+
+        public int EliminarEmpleado(Empleado oEmpleado)
+        {
+            using (var connection = _conexionSingleton.GetConnection())
+            {
+                connection.Open();
+
+                var query = "USP_Delete_Empleado";
+                var param = new DynamicParameters();
+                param.Add("@nIdEmpleado", oEmpleado.nIdEmpleado);
+                return (int)SqlMapper.ExecuteScalar(connection, query, param, commandType: CommandType.StoredProcedure);
             }
 
 

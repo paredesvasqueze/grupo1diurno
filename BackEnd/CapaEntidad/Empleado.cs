@@ -1,10 +1,10 @@
 ﻿namespace CapaEntidad
 {
-    public class Alumno
+    public class Empleado
     {
-        public int nId { get; set; }
-        public string cNombre { get; set; }
-        public string cApellido { get; set; }
-        public DateTime dFechaNacimiento { get; set; }
+        public int nIdEmpleado { get; set; }
+        public string? cNombre { get; set; }
+        public string? cApellido { get; set; }
+        public DateTime dFechaContratacion { get; set; }
     }
 }
