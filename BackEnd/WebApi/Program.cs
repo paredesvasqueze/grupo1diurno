@@ -19,6 +19,9 @@ builder.Services.AddScoped<AlumnoDomain>();
 builder.Services.AddScoped<EmpleadoRepository>();
 builder.Services.AddScoped<EmpleadoDomain>();
 
+builder.Services.AddScoped<ProductoRepository>();
+builder.Services.AddScoped<ProductoDomain>();
+
 // Registrar los controladores
 builder.Services.AddControllers();
 

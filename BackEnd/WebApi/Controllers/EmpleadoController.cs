@@ -28,5 +28,20 @@ namespace WebApi.Controllers
             var id = _EmpleadoDomain.InsertarEmpleado(oEmpleado);
             return Ok(id);
         }
+
+
+        [HttpPut("ActualizarEmpleado")]
+        public IActionResult ActualizarEmpleado(Empleado oEmpleado)
+        {
+            var id = _EmpleadoDomain.ActualizarEmpleado(oEmpleado);
+            return Ok(id);
+        }
+
+        [HttpDelete("EliminarEmpleado")]
+        public IActionResult EliminarEmpleado(Empleado oEmpleado)
+        {
+            var id = _EmpleadoDomain.EliminarEmpleado(oEmpleado);
+            return Ok(id);
+        }
     }
 }
