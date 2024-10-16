@@ -22,6 +22,13 @@ builder.Services.AddScoped<EmpleadoDomain>();
 builder.Services.AddScoped<ProductoRepository>();
 builder.Services.AddScoped<ProductoDomain>();
 
+builder.Services.AddScoped<OrdenRepository>();
+builder.Services.AddScoped<OrdenDomain>();
+
+builder.Services.AddScoped<MesaRepository>();
+builder.Services.AddScoped<MesaDomain>();
+
+
 // Registrar los controladores
 builder.Services.AddControllers();
 
