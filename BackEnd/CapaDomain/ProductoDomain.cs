@@ -37,7 +37,30 @@ namespace CapaDomain
             {
                 throw;
             }
-            
+        }
+
+        public int ActualizarProducto(Producto oProducto)
+        {
+            try
+            {
+                return _ProductoRepository.ActualizarProducto(oProducto);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public int EliminarProducto(Producto oProducto)
+        {
+            try
+            {
+                return _ProductoRepository.EliminarProducto(oProducto);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }

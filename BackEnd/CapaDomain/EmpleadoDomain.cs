@@ -37,7 +37,30 @@ namespace CapaDomain
             {
                 throw;
             }
-            
+        }
+
+        public int ActualizarEmpleado(Empleado oEmpleado)
+        {
+            try
+            {
+                return _EmpleadoRepository.ActualizarEmpleado(oEmpleado);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public int EliminarEmpleado(Empleado oEmpleado)
+        {
+            try
+            {
+                return _EmpleadoRepository.EliminarEmpleado(oEmpleado);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }
