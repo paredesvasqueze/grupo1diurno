@@ -8,73 +8,65 @@ using System.Text;
 using System.Threading.Tasks;
 using CapaEntidad;
 using Dapper;
-
 namespace CapaDatos
 {
-    public class CategoriaRepository
+    public class ReservaRepository
     {
         private readonly ConexionSingleton _conexionSingleton;
-
         // Constructor que recibe el singleton de conexión
-        public CategoriaRepository(ConexionSingleton conexionSingleton)
+        public ReservaRepository(ConexionSingleton conexionSingleton)
         {
             _conexionSingleton = conexionSingleton;
         }
-
-        // Método para obtener una lista de Categorias
-        public IEnumerable<Categoria> ObtenerCategoriaTodos()
+        // Método para obtener una lista de Reservas
+        public IEnumerable<Reserva> ObtenerReservaTodos()
         {
-            var Categorias = new List<Categoria>();
-
+            var Reservas = new List<Reserva>();
             using (var connection = _conexionSingleton.GetConnection())
             {
                 connection.Open();
-                IEnumerable<Categoria> lstFound = new List<Categoria>();
-                var query = "USP_GET_Categoria_Todos";
+                IEnumerable<Reserva> lstFound = new List<Reserva>();
+                var query = "USP_GET_Reserva_Todos";
                 var param = new DynamicParameters();
                 //param.Add("@nConstGrupo", nConstGrupo, dbType: DbType.Int32);
-                lstFound = SqlMapper.Query<Categoria>(connection, query, param, commandType: CommandType.StoredProcedure);
-                return lstFound;              
-                
+                lstFound = SqlMapper.Query<Reserva>(connection, query, param, commandType: CommandType.StoredProcedure);
+                return lstFound;
+
             }
         }
-
-        public int InsertarCategoria(Categoria oCategoria)
-        {
-            using (var connection = _conexionSingleton.GetConnection())
-            {
-                connection.Open();
-                
-                var query = "USP_Insert_Categoria";
-                var param = new DynamicParameters();
-                param.Add("@cCategoria", oCategoria.cCategoria);
-                return (int)SqlMapper.ExecuteScalar(connection, query, param, commandType: CommandType.StoredProcedure);                
-            }
-        }
-
-        public int ActualizarCategoria(Categoria oCategoria)
+        public int InsertarReserva(Reserva oReserva)
         {
             using (var connection = _conexionSingleton.GetConnection())
             {
                 connection.Open();
 
-                var query = "USP_Actualizar_Categoria";
+                var query = "USP_Insert_Reserva";
                 var param = new DynamicParameters();
-                param.Add("@nIdCategoria", oCategoria.nIdCategoria);
-                param.Add("@cCategoria", oCategoria.cCategoria);
+                param.Add("@dtFechaReserva", oReserva.dtFechaReserva);
                 return (int)SqlMapper.ExecuteScalar(connection, query, param, commandType: CommandType.StoredProcedure);
             }
         }
-
-        public int EliminarCategoria(Categoria oCategoria)
+        public int ActualizarReserva(Reserva oReserva)
         {
             using (var connection = _conexionSingleton.GetConnection())
             {
                 connection.Open();
-
-                var query = "USP_Eliminar_Categoria";
+                var query = "USP_Insert_Reserva";
                 var param = new DynamicParameters();
-                param.Add("@nIdCategoria", oCategoria.nIdCategoria);
+                param.Add("@nIdReserva", oReserva.nIdReserva);
+                param.Add("@dtFechaReserva", oReserva.dtFechaReserva);
+                param.Add("@nIdCliente", oReserva.nIdCliente);
+                return (int)SqlMapper.ExecuteScalar(connection, query, param, commandType: CommandType.StoredProcedure);
+            }
+        }
+        public int EliminarReserva(Reserva oReserva)
+        {
+            using (var connection = _conexionSingleton.GetConnection())
+            {
+                connection.Open();
+                var query = "USP_Insert_Reserva";
+                var param = new DynamicParameters();
+                param.Add("@nIdReserva", oReserva.nIdReserva);
                 return (int)SqlMapper.ExecuteScalar(connection, query, param, commandType: CommandType.StoredProcedure);
             }
         }

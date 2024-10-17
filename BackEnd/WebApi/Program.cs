@@ -28,6 +28,17 @@ builder.Services.AddScoped<OrdenDomain>();
 builder.Services.AddScoped<MesaRepository>();
 builder.Services.AddScoped<MesaDomain>();
 
+builder.Services.AddScoped<CategoriaRepository>();
+builder.Services.AddScoped<CategoriaDomain>();
+
+builder.Services.AddScoped<ClienteRepository>();
+builder.Services.AddScoped<ClienteDomain>();
+
+builder.Services.AddScoped<ReservaRepository>();
+builder.Services.AddScoped<ReservaDomain>();
+
+builder.Services.AddScoped<DetalleOrdenRepository>();
+builder.Services.AddScoped<DetalleOrdenDomain>();
 
 // Registrar los controladores
 builder.Services.AddControllers();
