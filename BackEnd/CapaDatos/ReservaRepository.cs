@@ -51,7 +51,7 @@ namespace CapaDatos
             using (var connection = _conexionSingleton.GetConnection())
             {
                 connection.Open();
-                var query = "USP_Insert_Reserva";
+                var query = "USP_Actualizar_Reserva";
                 var param = new DynamicParameters();
                 param.Add("@nIdReserva", oReserva.nIdReserva);
                 param.Add("@dtFechaReserva", oReserva.dtFechaReserva);
@@ -64,7 +64,7 @@ namespace CapaDatos
             using (var connection = _conexionSingleton.GetConnection())
             {
                 connection.Open();
-                var query = "USP_Insert_Reserva";
+                var query = "USP_Eliminar_Reserva";
                 var param = new DynamicParameters();
                 param.Add("@nIdReserva", oReserva.nIdReserva);
                 return (int)SqlMapper.ExecuteScalar(connection, query, param, commandType: CommandType.StoredProcedure);

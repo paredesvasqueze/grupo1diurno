@@ -61,7 +61,7 @@ namespace CapaDatos
                 {
                     connection.Open();
 
-                    var query = "USP_Update_Producto";
+                    var query = "USP_Actualizar_Producto";
                     var param = new DynamicParameters();
                     param.Add("@nIdProducto", oProducto.nIdProducto);
                     param.Add("@cNombre", oProducto.cNombre);
@@ -77,7 +77,7 @@ namespace CapaDatos
                 {
                     connection.Open();
 
-                    var query = "USP_Delete_Producto";
+                    var query = "USP_Eliminar_Producto";
                     var param = new DynamicParameters();
                     param.Add("@nIdProducto", oProducto.nIdProducto);
                     return SqlMapper.Execute(connection, query, param, commandType: CommandType.StoredProcedure);

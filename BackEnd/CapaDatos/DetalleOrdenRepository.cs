@@ -51,7 +51,7 @@ namespace CapaDatos
             using (var connection = _conexionSingleton.GetConnection())
             {
                 connection.Open();
-                var query = "USP_Insert_DetalleOrden";
+                var query = "USP_Actualizar_DetalleOrden";
                 var param = new DynamicParameters();
                 param.Add("nIdDetalleOrden", oDetalleOrden.nIdDetalleOrden);
                 param.Add("@nCantidad", oDetalleOrden.nCantidad);
@@ -65,7 +65,7 @@ namespace CapaDatos
             using (var connection = _conexionSingleton.GetConnection())
             {
                 connection.Open();
-                var query = "USP_Insert_DetalleOrden";
+                var query = "USP_Eliminar_DetalleOrden";
                 var param = new DynamicParameters();
                 param.Add("@nIdDetalleOrden", oDetalleOrden.nCantidad);
                 return (int)SqlMapper.ExecuteScalar(connection, query, param, commandType: CommandType.StoredProcedure);
