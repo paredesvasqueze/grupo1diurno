@@ -5,7 +5,7 @@
         public int nIdEmpleado { get; set; }
         public string? cNombre { get; set; }
         public string? cApellido { get; set; }
-        public DateTime dtFechaContratacion { get; set; }
-        public string? cDocumento { get; set; }
+        public int dtFechaContratacion { get; set; }
+        public int nDocumento { get; set; }
     }
 }

@@ -47,7 +47,7 @@ namespace CapaDatos
                 
                 var query = "USP_Insert_Mesa";
                 var param = new DynamicParameters();
-                param.Add("@nNroMesa", oMesa.nNroMesa);
+                param.Add("@nNoMesa", oMesa.nNoMesa);
                 param.Add("@cCapacidad", oMesa.cCapacidad);               
                 return (int)SqlMapper.ExecuteScalar(connection, query, param, commandType: CommandType.StoredProcedure);                
             }
@@ -62,7 +62,7 @@ namespace CapaDatos
                 var query = "USP_Actualizar_Mesa";
                 var param = new DynamicParameters();
                 param.Add("@nIdMesa", oMesa.nIdMesa);
-                param.Add("@nNroMesa", oMesa.nNroMesa);
+                param.Add("@nNoMesa", oMesa.nNoMesa);
                 param.Add("@cCapacidad", oMesa.cCapacidad);
                 return (int)SqlMapper.ExecuteScalar(connection, query, param, commandType: CommandType.StoredProcedure);
             }
