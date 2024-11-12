@@ -6,6 +6,6 @@
         public string? cNombre { get; set; }
         public string? cDescripcion { get; set; }
         public int nIdCategoria { get; set; }
-        public int nPrecio { get; set; }
+        public double nPrecio { get; set; }
     }
 }

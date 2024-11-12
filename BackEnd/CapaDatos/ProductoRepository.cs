@@ -47,7 +47,6 @@ namespace CapaDatos
                 
                 var query = "USP_Insert_Producto";
                 var param = new DynamicParameters();
-                param.Add("@nIdProducto", oProducto.nIdProducto);
                 param.Add("@cNombre", oProducto.cNombre);
                 param.Add("@cDescripcion", oProducto.cDescripcion);
                 param.Add("@nIdCategoria", oProducto.nIdCategoria);
