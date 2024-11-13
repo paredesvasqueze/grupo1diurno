@@ -43,6 +43,8 @@ namespace CapaDatos
                 var query = "USP_Insert_DetalleOrden";
                 var param = new DynamicParameters();
                 param.Add("@nCantidad", oDetalleOrden.nCantidad);
+                param.Add("@nIdOrden", oDetalleOrden.nIdOrden);
+                param.Add("@nIdProducto", oDetalleOrden.nIdProducto);
                 return (int)SqlMapper.ExecuteScalar(connection, query, param, commandType: CommandType.StoredProcedure);
             }
         }
