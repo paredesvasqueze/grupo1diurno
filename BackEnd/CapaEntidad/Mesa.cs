@@ -4,6 +4,6 @@
     {
         public int nIdMesa { get; set; }
         public int nNoMesa { get; set; }
-        public string? cCapacidad { get; set; }
+        public int cCapacidad { get; set; }
     }
 }
