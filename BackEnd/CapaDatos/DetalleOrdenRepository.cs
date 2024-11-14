@@ -55,10 +55,10 @@ namespace CapaDatos
                 connection.Open();
                 var query = "USP_Actualizar_DetalleOrden";
                 var param = new DynamicParameters();
-                param.Add("nIdDetalleOrden", oDetalleOrden.nIdDetalleOrden);
+                param.Add("@nIdDetalle", oDetalleOrden.nIdDetalle);
                 param.Add("@nCantidad", oDetalleOrden.nCantidad);
-                param.Add("nIdOrden", oDetalleOrden.nIdOrden);
-                param.Add("nIdProducto", oDetalleOrden.nIdProducto);
+                param.Add("@nIdOrden", oDetalleOrden.nIdOrden);
+                param.Add("@nIdProducto", oDetalleOrden.nIdProducto);
                 return (int)SqlMapper.ExecuteScalar(connection, query, param, commandType: CommandType.StoredProcedure);
             }
         }
@@ -69,7 +69,7 @@ namespace CapaDatos
                 connection.Open();
                 var query = "USP_Eliminar_DetalleOrden";
                 var param = new DynamicParameters();
-                param.Add("@nIdDetalleOrden", oDetalleOrden.nCantidad);
+                param.Add("@nIdDetalle", oDetalleOrden.nIdDetalle);
                 return (int)SqlMapper.ExecuteScalar(connection, query, param, commandType: CommandType.StoredProcedure);
             }
         }

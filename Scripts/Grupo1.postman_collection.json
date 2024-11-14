@@ -1,0 +1,1019 @@
+{
+	"info": {
+		"_postman_id": "84984462-4d82-4c15-901b-c5ca60876ea9",
+		"name": "Grupo1",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "38071134",
+		"_collection_link": "https://universal-moon-563738.postman.co/workspace/My-Workspace~1a59411c-b3a7-41f3-8c64-5093aeb9ba32/collection/38071134-84984462-4d82-4c15-901b-c5ca60876ea9?action=share&source=collection_link&creator=38071134"
+	},
+	"item": [
+		{
+			"name": "Categoria",
+			"item": [
+				{
+					"name": "ObtenerCategoriaTodos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5102/Categoria/ObtenerCategoriaTodos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5102",
+							"path": [
+								"Categoria",
+								"ObtenerCategoriaTodos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "InsertarCategoria",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nIdCategoria\": 0,\r\n  \"cCategoria\": \"pizza\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5102/Categoria/InsertarCategoria",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5102",
+							"path": [
+								"Categoria",
+								"InsertarCategoria"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ActualizarCategoria",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nIdCategoria\": 0,\r\n  \"cCategoria\": \"pizza\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5102/Categoria/ActualizarCategoria",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5102",
+							"path": [
+								"Categoria",
+								"ActualizarCategoria"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "EliminarCategoria",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nIdCategoria\": 0,\r\n  \"cCategoria\": \"pizza\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5102/Categoria/EliminarCategoria",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5102",
+							"path": [
+								"Categoria",
+								"EliminarCategoria"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Cliente",
+			"item": [
+				{
+					"name": "ObtenerClienteTodos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5102/Cliente/ObtenerClienteTodos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5102",
+							"path": [
+								"Cliente",
+								"ObtenerClienteTodos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "InsertarCliente",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nIdCliente\": 0,\r\n  \"cNombre\": \"string\",\r\n  \"cApellido\": \"string\",\r\n  \"cCorreo\": \"string\",\r\n  \"cTelefono\": \"string\",\r\n  \"dFechaRegistro\": \"2024-10-25T15:41:16.511Z\",\r\n  \"cDocumento\": \"string\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5102/Cliente/InsertarCliente",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5102",
+							"path": [
+								"Cliente",
+								"InsertarCliente"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ActualizarCliente",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nIdCliente\": 0,\r\n  \"cNombre\": \"string\",\r\n  \"cApellido\": \"string\",\r\n  \"cCorreo\": \"string\",\r\n  \"cTelefono\": \"string\",\r\n  \"dFechaRegistro\": \"2024-10-25T15:42:36.505Z\",\r\n  \"cDocumento\": \"string\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5102/Cliente/ActualizarCliente",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5102",
+							"path": [
+								"Cliente",
+								"ActualizarCliente"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "EliminarCliente",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nIdCliente\": 0,\r\n  \"cNombre\": \"string\",\r\n  \"cApellido\": \"string\",\r\n  \"cCorreo\": \"string\",\r\n  \"cTelefono\": \"string\",\r\n  \"dFechaRegistro\": \"2024-10-25T15:43:16.321Z\",\r\n  \"cDocumento\": \"string\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5102/Cliente/EliminarCliente",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5102",
+							"path": [
+								"Cliente",
+								"EliminarCliente"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "DetalleOrden",
+			"item": [
+				{
+					"name": "ObtenerDetalleOrdenTodos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5102/DetalleOrden/ObtenerDetalleOrdenTodos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5102",
+							"path": [
+								"DetalleOrden",
+								"ObtenerDetalleOrdenTodos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "InsertarDetalleOrden",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nCantidad\": 1,\r\n  \"nIdOrden\": 1,\r\n  \"nIdProducto\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5102/DetalleOrden/InsertarDetalleOrden",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5102",
+							"path": [
+								"DetalleOrden",
+								"InsertarDetalleOrden"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ActualizarDetalleOrden",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nIdDetalle\": 5,\r\n  \"nCantidad\": 2,\r\n  \"nIdOrden\": 1,\r\n  \"nIdProducto\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5102/DetalleOrden/ActualizarDetalleOrden",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5102",
+							"path": [
+								"DetalleOrden",
+								"ActualizarDetalleOrden"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "EliminarDetalleOrden",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nIdDetalle\": 5\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5102/DetalleOrden/EliminarDetalleOrden",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5102",
+							"path": [
+								"DetalleOrden",
+								"EliminarDetalleOrden"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Orden",
+			"item": [
+				{
+					"name": "ObtenerOrdenTodos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5102/Orden/ObtenerOrdenTodos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5102",
+							"path": [
+								"Orden",
+								"ObtenerOrdenTodos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "InsertarOrden",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nIdOrden\": 2,\r\n  \"dFecha\": \"2024-11-12T00:03:22.267Z\",\r\n  \"nIdCliente\": 2,\r\n  \"nIdEmpleado\": 2,\r\n  \"nIdMesa\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5102/Orden/InsertarOrden",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5102",
+							"path": [
+								"Orden",
+								"InsertarOrden"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ActualizarOrden",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nIdOrden\": 2,\r\n  \"dFecha\": \"2024-11-12T00:03:22.267Z\",\r\n  \"nIdCliente\": 2,\r\n  \"nIdEmpleado\": 2,\r\n  \"nIdMesa\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5102/Orden/ActualizarOrden",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5102",
+							"path": [
+								"Orden",
+								"ActualizarOrden"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "EliminarOrden",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nIdOrden\": 3,\r\n  \"dFecha\": \"2024-11-12T00:15:06.571Z\",\r\n  \"nIdCliente\": 1,\r\n  \"nIdEmpleado\": 1,\r\n  \"nIdMesa\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5102/Orden/EliminarOrden",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5102",
+							"path": [
+								"Orden",
+								"EliminarOrden"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Mesa",
+			"item": [
+				{
+					"name": "ObtenerMesaTodos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5102/Mesa/ObtenerMesaTodos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5102",
+							"path": [
+								"Mesa",
+								"ObtenerMesaTodos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ObtenerMesaTodos",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nIdMesa\": 0,\r\n  \"nNoMesa\": 6,\r\n  \"cCapacidad\": \"4\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5102/Mesa/InsertarMesa",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5102",
+							"path": [
+								"Mesa",
+								"InsertarMesa"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ActualizarMesa",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nIdMesa\": 0,\r\n  \"nNoMesa\": 4,\r\n  \"cCapacidad\": \"1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5102/Mesa/ActualizarMesa",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5102",
+							"path": [
+								"Mesa",
+								"ActualizarMesa"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "EliminarMesa",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nIdMesa\": 0,\r\n  \"nNoMesa\": 1,\r\n  \"cCapacidad\": \"4\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5102/Mesa/EliminarMesa",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5102",
+							"path": [
+								"Mesa",
+								"EliminarMesa"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Cliente",
+			"item": [
+				{
+					"name": "ObtenerClienteTodos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5102/Cliente/ObtenerClienteTodos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5102",
+							"path": [
+								"Cliente",
+								"ObtenerClienteTodos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "InsertarCliente",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nIdCliente\": 0,\r\n  \"cNombre\": \"Luisa\",\r\n  \"cApellido\": \"Paredes\",\r\n  \"cCorreo\": \"paredesluisa@gmail.com\",\r\n  \"cTelefono\": \"999865321\",\r\n  \"dFechaRegistro\": \"2024-10-31T15:14:16.040Z\",\r\n  \"cDocumento\": \"95686632\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5102/Cliente/InsertarCliente",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5102",
+							"path": [
+								"Cliente",
+								"InsertarCliente"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ActualizarCliente",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nIdCliente\": 0,\r\n  \"cNombre\": \"Luisita\",\r\n  \"cApellido\": \"Paredes\",\r\n  \"cCorreo\": \"luisitap@gmail.com\",\r\n  \"cTelefono\": \"959265825\",\r\n  \"dFechaRegistro\": \"2024-10-31T15:16:44.851Z\",\r\n  \"cDocumento\": \"78775865\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5102/Cliente/ActualizarCliente",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5102",
+							"path": [
+								"Cliente",
+								"ActualizarCliente"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "EliminarCliente",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nIdCliente\": 0,\r\n  \"cNombre\": \"Luis\",\r\n  \"cApellido\": \"Castillo\",\r\n  \"cCorreo\": \"luiscastillo@gmail.comm\",\r\n  \"cTelefono\": \"989596257\",\r\n  \"dFechaRegistro\": \"2024-10-31T15:19:49.735Z\",\r\n  \"cDocumento\": \"57889865\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5102/Cliente/EliminarCliente",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5102",
+							"path": [
+								"Cliente",
+								"EliminarCliente"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Empleado",
+			"item": [
+				{
+					"name": "ObtenerEmpleadoTodos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5102/Empleado/ObtenerEmpleadoTodos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5102",
+							"path": [
+								"Empleado",
+								"ObtenerEmpleadoTodos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "InsertarEmpleado",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nIdEmpleado\": 0,\r\n  \"cNombre\": \"Jorge\",\r\n  \"cApellido\": \"Santillan\",\r\n  \"dtFechaContratacion\": \"2024-10-31T15:35:29.470Z\",\r\n  \"cDocumento\": \"52758963\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5102/Empleado/InsertarEmpleado",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5102",
+							"path": [
+								"Empleado",
+								"InsertarEmpleado"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ActualizarEmpleado",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nIdEmpleado\": 0,\r\n  \"cNombre\": \"Seleny\",\r\n  \"cApellido\": \"Paredes\",\r\n  \"dtFechaContratacion\": \"2024-11-11T15:48:56.360Z\",\r\n  \"cDocumento\": 60506486\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5102/Empleado/ActualizarEmpleado",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5102",
+							"path": [
+								"Empleado",
+								"ActualizarEmpleado"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "EliminarEmpleado",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nIdEmpleado\": 0,\r\n  \"cNombre\": \"Ana\",\r\n  \"cApellido\": \"Paredes\",\r\n  \"dtFechaContratacion\": \"2024-11-11T15:52:50.335Z\",\r\n  \"cDocumento\": 20054897\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5102/Empleado/EliminarEmpleado",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5102",
+							"path": [
+								"Empleado",
+								"EliminarEmpleado"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Producto",
+			"item": [
+				{
+					"name": "ObtenerProductoTodos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5102/Producto/ObtenerProductoTodos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5102",
+							"path": [
+								"Producto",
+								"ObtenerProductoTodos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ObtenerProductoTodos",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"cNombre\": \"Luis\",\r\n  \"cDescripcion\": \"Leche\",\r\n  \"nIdCategoria\": 1,\r\n  \"nPrecio\": 8\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5102/Producto/InsertarProducto",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5102",
+							"path": [
+								"Producto",
+								"InsertarProducto"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ActualizarProducto",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nIdProducto\": 0,\r\n  \"cNombre\": \"Jeremy\",\r\n  \"cDescripcion\": \"galleta\",\r\n  \"nIdCategoria\": 2,\r\n  \"nPrecio\": 3\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5102/Producto/ActualizarProducto",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5102",
+							"path": [
+								"Producto",
+								"ActualizarProducto"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "EliminarProducto",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nIdProducto\": 0,\r\n  \"cNombre\": \"Luis\",\r\n  \"cDescripcion\": \"Leche\",\r\n  \"nIdCategoria\": 1,\r\n  \"nPrecio\": 8\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5102/Producto/EliminarProducto",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5102",
+							"path": [
+								"Producto",
+								"EliminarProducto"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Reserva",
+			"item": [
+				{
+					"name": "ObtenerReservaTodos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5102/Reserva/ObtenerReservaTodos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5102",
+							"path": [
+								"Reserva",
+								"ObtenerReservaTodos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "InsertarReserva",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"dtFechaReserva\": \"2024-11-13T12:42:49.962Z\",\r\n  \"nIdCliente\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5102/Reserva/InsertarReserva",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5102",
+							"path": [
+								"Reserva",
+								"InsertarReserva"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ActualizarReserva",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nIdReserva\": 0,\r\n  \"dtFechaReserva\": \"2024-11-13T12:46:08.138Z\",\r\n  \"nIdCliente\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5102/Reserva/ActualizarReserva",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5102",
+							"path": [
+								"Reserva",
+								"ActualizarReserva"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "EliminarReserva",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nIdReserva\": 0,\r\n  \"dtFechaReserva\": \"2024-11-13T12:47:50.786Z\",\r\n  \"nIdCliente\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5102/Reserva/EliminarReserva",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5102",
+							"path": [
+								"Reserva",
+								"EliminarReserva"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
