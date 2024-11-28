@@ -1,0 +1,196 @@
+﻿@model IEnumerable<Orden>
+@{
+    ViewData["Title"] = "Listado de Órdenes";
+    Layout = "~/Views/Shared/_LayoutDashBoard.cshtml";
+}
+
+<h2>Listado de Órdenes</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID Orden</th>
+            <th>Fecha</th>
+            <th>ID Cliente</th>
+            <th>ID Empleado</th>
+            <th>ID Mesa</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.nIdOrden</td>
+                <td>@item.dFecha.ToString("yyyy-MM-dd HH:mm:ss")</td>
+                <td>@item.nIdCliente</td>
+                <td>@item.nIdEmpleado</td>
+                <td>@item.nIdMesa</td>
+                <td>
+                    <button class="btn btn-warning" onclick="openEditModal(@item.nIdOrden, '@item.dFecha.ToString("yyyy-MM-dd HH:mm:ss")', @item.nIdCliente, @item.nIdEmpleado, @item.nIdMesa)">Editar</button>
+                    <button class="btn btn-danger" onclick="deleteOrder(@item.nIdOrden)">Eliminar</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<button class="btn btn-primary" onclick="openModal()">Nuevo</button>
+
+<!-- Modal para Crear Orden -->
+<div class="modal fade" id="newOrderModal" tabindex="-1" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTitle">Nueva Orden</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="newOrderForm">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="fecha">Fecha</label>
+                        <input type="datetime-local" class="form-control" id="fecha" name="dFecha" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="cliente">ID Cliente</label>
+                        <input type="number" class="form-control" id="cliente" name="nIdCliente" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="empleado">ID Empleado</label>
+                        <input type="number" class="form-control" id="empleado" name="nIdEmpleado" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="mesa">ID Mesa</label>
+                        <input type="number" class="form-control" id="mesa" name="nIdMesa" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" onclick="submitOrder()">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Modal para Editar Orden -->
+<div class="modal fade" id="editOrderModal" tabindex="-1" role="dialog" aria-labelledby="editModalTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editModalTitle">Editar Orden</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="editOrderForm">
+                <input type="hidden" id="editId" />
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="editFecha">Fecha</label>
+                        <input type="datetime-local" class="form-control" id="editFecha" name="dFecha" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editCliente">ID Cliente</label>
+                        <input type="number" class="form-control" id="editCliente" name="nIdCliente" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editEmpleado">ID Empleado</label>
+                        <input type="number" class="form-control" id="editEmpleado" name="nIdEmpleado" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editMesa">ID Mesa</label>
+                        <input type="number" class="form-control" id="editMesa" name="nIdMesa" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" onclick="submitEditOrder()">Guardar Cambios</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function openModal() {
+            $('#newOrderModal').modal('show');
+        }
+
+        function openEditModal(id, fecha, cliente, empleado, mesa) {
+            document.getElementById('editId').value = id;
+            document.getElementById('editFecha').value = fecha;
+            document.getElementById('editCliente').value = cliente;
+            document.getElementById('editEmpleado').value = empleado;
+            document.getElementById('editMesa').value = mesa;
+            $('#editOrderModal').modal('show');
+        }
+
+        function submitOrder() {
+            const data = {
+                dFecha: document.getElementById('fecha').value,
+                nIdCliente: document.getElementById('cliente').value,
+                nIdEmpleado: document.getElementById('empleado').value,
+                nIdMesa: document.getElementById('mesa').value
+            };
+
+            fetch('/Orden', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+                .then(response => {
+                    if (response.ok) {
+                        location.reload();
+                    } else {
+                        alert('Error al crear la orden.');
+                    }
+                });
+        }
+
+        function submitEditOrder() {
+            const data = {
+                nIdOrden: document.getElementById('editId').value,
+                dFecha: document.getElementById('editFecha').value,
+                nIdCliente: document.getElementById('editCliente').value,
+                nIdEmpleado: document.getElementById('editEmpleado').value,
+                nIdMesa: document.getElementById('editMesa').value
+            };
+
+            fetch('/Orden', {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+                .then(response => {
+                    if (response.ok) {
+                        location.reload();
+                    } else {
+                        alert('Error al actualizar la orden.');
+                    }
+                });
+        }
+
+        function deleteOrder(id) {
+            if (confirm("¿Estás seguro de que deseas eliminar esta orden?")) {
+                fetch(`/Orden/${id}`, {
+                    method: 'DELETE'
+                })
+                    .then(response => {
+                        if (response.ok) {
+                            location.reload();
+                        } else {
+                            alert('Error al eliminar la orden.');
+                        }
+                    });
+            }
+        }
+    </script>
+}

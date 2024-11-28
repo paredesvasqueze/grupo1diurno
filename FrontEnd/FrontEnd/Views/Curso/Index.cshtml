@@ -1,0 +1,205 @@
+﻿@model IEnumerable<Curso>
+@{
+    ViewData["Title"] = "Listado de Cursos";
+    Layout = "~/Views/Shared/_LayoutDashBoard.cshtml";
+}
+
+<h2>Listado de Cursos</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID Curso</th>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Duración (Horas)</th>
+            <th>Estado</th>
+            <th>Fecha de Inicio</th>
+            <th>Fecha de Creación</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var curso in Model)
+        {
+            <tr>
+                <td>@curso.nId</td>
+                <td>@curso.cNombre</td>
+                <td>@curso.cDescripcion</td>
+                <td>@curso.nDuracion</td>
+                <td>@(curso.bEsActivo ? "Activo" : "Inactivo")</td>
+                <td>@curso.dFechaInicio.ToString("yyyy-MM-dd")</td>
+                <td>@curso.dFechaCreacion.ToString("yyyy-MM-dd")</td>
+                <td>
+                    <button class="btn btn-warning" onclick="openEditModal(@curso.nId, '@curso.cNombre', '@curso.cDescripcion', @curso.nDuracion, @curso.bEsActivo.ToString().ToLower() , '@curso.dFechaInicio.ToString("yyyy-MM-dd")')">Editar</button>
+                    <button class="btn btn-danger" onclick="deleteCourse(@curso.nId)">Eliminar</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<button class="btn btn-primary" onclick="openModal()">Nuevo</button>
+
+<!-- Modal para Nuevo Curso -->
+<div class="modal fade" id="newCourseModal" tabindex="-1" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTitle">Nuevo Curso</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="newCourseForm">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="nombre">Nombre</label>
+                        <input type="text" class="form-control" id="nombre" name="cNombre" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="descripcion">Descripción</label>
+                        <input type="text" class="form-control" id="descripcion" name="cDescripcion">
+                    </div>
+                    <div class="form-group">
+                        <label for="duracion">Duración (Horas)</label>
+                        <input type="number" class="form-control" id="duracion" name="nDuracion" min="1" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="estado">Estado</label>
+                        <select class="form-control" id="estado" name="bEsActivo">
+                            <option value="true">Activo</option>
+                            <option value="false">Inactivo</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="fechaInicio">Fecha de Inicio</label>
+                        <input type="date" class="form-control" id="fechaInicio" name="dFechaInicio" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" onclick="submitCourse()">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Modal para Editar Curso -->
+<div class="modal fade" id="editCourseModal" tabindex="-1" role="dialog" aria-labelledby="editModalTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editModalTitle">Editar Curso</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="editCourseForm">
+                <input type="hidden" id="editId" />
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="editNombre">Nombre</label>
+                        <input type="text" class="form-control" id="editNombre" name="cNombre" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editDescripcion">Descripción</label>
+                        <input type="text" class="form-control" id="editDescripcion" name="cDescripcion">
+                    </div>
+                    <div class="form-group">
+                        <label for="editDuracion">Duración (Horas)</label>
+                        <input type="number" class="form-control" id="editDuracion" name="nDuracion" min="1" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editEstado">Estado</label>
+                        <select class="form-control" id="editEstado" name="bEsActivo">
+                            <option value="true">Activo</option>
+                            <option value="false">Inactivo</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="editFechaInicio">Fecha de Inicio</label>
+                        <input type="date" class="form-control" id="editFechaInicio" name="dFechaInicio" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" onclick="submitEditCourse()">Guardar Cambios</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function openModal() {
+            $('#newCourseModal').modal('show');
+        }
+
+        function openEditModal(id, nombre, descripcion, duracion, estado, fechaInicio) {
+            document.getElementById('editId').value = id;
+            document.getElementById('editNombre').value = nombre;
+            document.getElementById('editDescripcion').value = descripcion;
+            document.getElementById('editDuracion').value = duracion;
+            document.getElementById('editEstado').value = estado;
+            document.getElementById('editFechaInicio').value = fechaInicio;
+            $('#editCourseModal').modal('show');
+        }
+
+        function submitCourse() {
+            const data = {
+                cNombre: document.getElementById('nombre').value,
+                cDescripcion: document.getElementById('descripcion').value,
+                nDuracion: document.getElementById('duracion').value,
+                bEsActivo: document.getElementById('estado').value === "true",
+                dFechaInicio: document.getElementById('fechaInicio').value
+            };
+
+            fetch('/Curso', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            }).then(response => {
+                if (response.ok) location.reload();
+                else alert('Error al crear el curso.');
+            });
+        }
+
+        function submitEditCourse() {
+            const data = {
+                nId: document.getElementById('editId').value,
+                cNombre: document.getElementById('editNombre').value,
+                cDescripcion: document.getElementById('editDescripcion').value,
+                nDuracion: document.getElementById('editDuracion').value,
+                bEsActivo: document.getElementById('editEstado').value === "true",
+                dFechaInicio: document.getElementById('editFechaInicio').value
+            };
+
+            fetch('/Curso', {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            }).then(response => {
+                if (response.ok) location.reload();
+                else alert('Error al actualizar el curso.');
+            });
+        }
+
+        function deleteCourse(id) {
+            if (confirm("¿Estás seguro de que deseas eliminar este curso?")) {
+                fetch(`/Curso/${id}`, {
+                    method: 'DELETE'
+                }).then(response => {
+                    if (response.ok) location.reload();
+                    else alert('Error al eliminar el curso.');
+                });
+            }
+        }
+    </script>
+}
