@@ -1,0 +1,170 @@
+﻿@model IEnumerable<Reserva>
+@{
+    ViewData["Title"] = "Listado de Reservas";
+    Layout = "~/Views/Shared/_LayoutDashBoard.cshtml";
+}
+
+<h2>Listado de Reservas</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID Reserva</th>
+            <th>Fecha de Reserva</th>
+            <th>ID Cliente</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.nIdReserva</td>
+                <td>@item.dtFechaReserva.ToString("yyyy-MM-dd")</td>
+                <td>@item.nIdCliente</td>
+                <td>
+                    <button class="btn btn-warning" onclick="openEditModal(@item.nIdReserva, '@item.dtFechaReserva.ToString("yyyy-MM-dd")', @item.nIdCliente)">Editar</button>
+                    <button class="btn btn-danger" onclick="deleteReserva(@item.nIdReserva)">Eliminar</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<button class="btn btn-primary" onclick="openModal()">Nueva Reserva</button>
+
+<!-- Modal para Nueva Reserva -->
+<div class="modal fade" id="newReservaModal" tabindex="-1" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTitle">Nueva Reserva</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="newReservaForm">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="fechaReserva">Fecha de Reserva</label>
+                        <input type="date" class="form-control" id="fechaReserva" name="dtFechaReserva" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="idCliente">ID Cliente</label>
+                        <input type="number" class="form-control" id="idCliente" name="nIdCliente" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" onclick="submitReserva()">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Modal para Editar Reserva -->
+<div class="modal fade" id="editReservaModal" tabindex="-1" role="dialog" aria-labelledby="editModalTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editModalTitle">Editar Reserva</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="editReservaForm">
+                <input type="hidden" id="editId" />
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="editFechaReserva">Fecha de Reserva</label>
+                        <input type="date" class="form-control" id="editFechaReserva" name="dtFechaReserva" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editIdCliente">ID Cliente</label>
+                        <input type="number" class="form-control" id="editIdCliente" name="nIdCliente" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" onclick="submitEditReserva()">Guardar Cambios</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function openModal() {
+            $('#newReservaModal').modal('show');
+        }
+
+        function openEditModal(id, fechaReserva, idCliente) {
+            document.getElementById('editId').value = id;
+            document.getElementById('editFechaReserva').value = fechaReserva;
+            document.getElementById('editIdCliente').value = idCliente;
+            $('#editReservaModal').modal('show');
+        }
+
+        function submitReserva() {
+            const data = {
+                dtFechaReserva: document.getElementById('fechaReserva').value,
+                nIdCliente: document.getElementById('idCliente').value
+            };
+
+            fetch('/Reserva', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+                .then(response => {
+                    if (response.ok) {
+                        location.reload();
+                    } else {
+                        alert('Error al crear la reserva.');
+                    }
+                });
+        }
+
+        function submitEditReserva() {
+            const data = {
+                nIdReserva: document.getElementById('editId').value,
+                dtFechaReserva: document.getElementById('editFechaReserva').value,
+                nIdCliente: document.getElementById('editIdCliente').value
+            };
+
+            fetch('/Reserva', {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+                .then(response => {
+                    if (response.ok) {
+                        location.reload();
+                    } else {
+                        alert('Error al actualizar la reserva.');
+                    }
+                });
+        }
+
+        function deleteReserva(id) {
+            if (confirm("¿Estás seguro de que deseas eliminar esta reserva?")) {
+                fetch(`/Reserva/${id}`, {
+                    method: 'DELETE'
+                })
+                    .then(response => {
+                        if (response.ok) {
+                            location.reload();
+                        } else {
+                            alert('Error al eliminar la reserva.');
+                        }
+                    });
+            }
+        }
+    </script>
+}

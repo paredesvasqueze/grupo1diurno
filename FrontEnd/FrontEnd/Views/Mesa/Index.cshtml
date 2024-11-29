@@ -1,0 +1,170 @@
+﻿@model IEnumerable<Mesa>
+@{
+    ViewData["Title"] = "Listado de Mesas";
+    Layout = "~/Views/Shared/_LayoutDashBoard.cshtml";
+}
+
+<h2>Listado de Mesas</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID Mesa</th>
+            <th>Número de Mesa</th>
+            <th>Capacidad</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.nIdMesa</td>
+                <td>@item.nNoMesa</td>
+                <td>@item.cCapacidad</td>
+                <td>
+                    <button class="btn btn-warning" onclick="openEditModal(@item.nIdMesa, @item.nNoMesa, @item.cCapacidad)">Editar</button>
+                    <button class="btn btn-danger" onclick="deleteMesa(@item.nIdMesa)">Eliminar</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<button class="btn btn-primary" onclick="openModal()">Nuevo</button>
+
+<!-- Modal para Nueva Mesa -->
+<div class="modal fade" id="newMesaModal" tabindex="-1" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTitle">Nueva Mesa</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="newMesaForm">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="numero">Número de Mesa</label>
+                        <input type="number" class="form-control" id="numero" name="nNoMesa" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="capacidad">Capacidad</label>
+                        <input type="number" class="form-control" id="capacidad" name="cCapacidad" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" onclick="submitMesa()">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Modal para Editar Mesa -->
+<div class="modal fade" id="editMesaModal" tabindex="-1" role="dialog" aria-labelledby="editModalTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editModalTitle">Editar Mesa</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="editMesaForm">
+                <input type="hidden" id="editId" />
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="editNumero">Número de Mesa</label>
+                        <input type="number" class="form-control" id="editNumero" name="nNoMesa" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editCapacidad">Capacidad</label>
+                        <input type="number" class="form-control" id="editCapacidad" name="cCapacidad" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" onclick="submitEditMesa()">Guardar Cambios</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function openModal() {
+            $('#newMesaModal').modal('show');
+        }
+
+        function openEditModal(id, numero, capacidad) {
+            document.getElementById('editId').value = id;
+            document.getElementById('editNumero').value = numero;
+            document.getElementById('editCapacidad').value = capacidad;
+            $('#editMesaModal').modal('show');
+        }
+
+        function submitMesa() {
+            const data = {
+                nNoMesa: document.getElementById('numero').value,
+                cCapacidad: document.getElementById('capacidad').value
+            };
+
+            fetch('/Mesa', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+                .then(response => {
+                    if (response.ok) {
+                        location.reload();
+                    } else {
+                        alert('Error al crear la mesa.');
+                    }
+                });
+        }
+
+        function submitEditMesa() {
+            const data = {
+                nIdMesa: document.getElementById('editId').value,
+                nNoMesa: document.getElementById('editNumero').value,
+                cCapacidad: document.getElementById('editCapacidad').value
+            };
+
+            fetch('/Mesa', {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+                .then(response => {
+                    if (response.ok) {
+                        location.reload();
+                    } else {
+                        alert('Error al actualizar la mesa.');
+                    }
+                });
+        }
+
+        function deleteMesa(id) {
+            if (confirm("¿Estás seguro de que deseas eliminar esta mesa?")) {
+                fetch(`/Mesa/${id}`, {
+                    method: 'DELETE'
+                })
+                    .then(response => {
+                        if (response.ok) {
+                            location.reload();
+                        } else {
+                            alert('Error al eliminar la mesa.');
+                        }
+                    });
+            }
+        }
+    </script>
+}

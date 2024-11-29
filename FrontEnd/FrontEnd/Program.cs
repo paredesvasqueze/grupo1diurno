@@ -54,6 +54,13 @@ builder.Services.AddHttpClient<OrdenService>();
 builder.Services.AddScoped<OrdenService>();
 builder.Services.AddHttpClient<EmpleadoService>();
 builder.Services.AddScoped<EmpleadoService>();
+builder.Services.AddHttpClient<ReservaService>();
+builder.Services.AddScoped<ReservaService>();
+builder.Services.AddHttpClient<MesaService>();
+builder.Services.AddScoped<MesaService>();
+builder.Services.AddHttpClient<DetalleOrdenService>();
+builder.Services.AddScoped<DetalleOrdenService>();
+
 
 var app = builder.Build();
 

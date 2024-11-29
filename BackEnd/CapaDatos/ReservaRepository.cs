@@ -42,7 +42,7 @@ namespace CapaDatos
 
                 var query = "USP_Insert_Reserva";
                 var param = new DynamicParameters();
-                param.Add("@dtFechaReserva", oReserva.dtFechaReserva);
+                param.Add("@dFechaReserva", oReserva.dFechaReserva);
                 return (int)SqlMapper.ExecuteScalar(connection, query, param, commandType: CommandType.StoredProcedure);
             }
         }
@@ -54,7 +54,7 @@ namespace CapaDatos
                 var query = "USP_Actualizar_Reserva";
                 var param = new DynamicParameters();
                 param.Add("@nIdReserva", oReserva.nIdReserva);
-                param.Add("@dtFechaReserva", oReserva.dtFechaReserva);
+                param.Add("@dFechaReserva", oReserva.dFechaReserva);
                 param.Add("@nIdCliente", oReserva.nIdCliente);
                 return (int)SqlMapper.ExecuteScalar(connection, query, param, commandType: CommandType.StoredProcedure);
             }
