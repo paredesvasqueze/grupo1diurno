@@ -2,6 +2,8 @@
 {
     public class DetalleOrden
     {
+        public int nIdDetalleOrden;
+
         public int nIdDetalle { get; set; }
         public int nCantidad { get; set; }
         public int nIdOrden { get; set; }

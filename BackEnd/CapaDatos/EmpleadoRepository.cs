@@ -63,7 +63,7 @@ namespace CapaDatos
 
                 var query = "USP_Actualizar_Empleado";
                 var param = new DynamicParameters();
-                param.Add("@nIdEmpleado", oEmpleado.cNombre);
+                param.Add("@nIdEmpleado", oEmpleado.nIdEmpleado);
                 param.Add("@cNombre", oEmpleado.cNombre);
                 param.Add("@cApellido", oEmpleado.cApellido);
                 param.Add("@dtFechaContratacion", oEmpleado.dtFechaContratacion);

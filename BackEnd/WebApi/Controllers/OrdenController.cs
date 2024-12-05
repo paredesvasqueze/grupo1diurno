@@ -36,9 +36,10 @@ namespace WebApi.Controllers
             return Ok(id);
         }
 
-        [HttpDelete("EliminarOrden")]
-        public IActionResult EliminarOrden(Orden oOrden)
+        [HttpDelete("EliminarOrden/{nIdOrden}")]
+        public IActionResult EliminarOrden(Int32 nIdOrden)
         {
+            Orden oOrden = new Orden() { nIdOrden = nIdOrden };
             var id = _OrdenDomain.EliminarOrden(oOrden);
             return Ok(id);
         }

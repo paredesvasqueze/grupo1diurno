@@ -30,9 +30,10 @@ namespace WebApi.Controllers
             var id = _ReservaDomain.ActualizarReserva(oReserva);
             return Ok(id);
         }
-        [HttpDelete("EliminarReserva")]
-        public IActionResult EliminarReserva(Reserva oReserva)
+        [HttpDelete("EliminarReserva/{nIdReserva}")]
+        public IActionResult EliminarReserva(Int32 nIdReserva)
         {
+            Reserva oReserva = new Reserva() { nIdReserva = nIdReserva };
             var id = _ReservaDomain.EliminarReserva(oReserva);
             return Ok(id);
         }

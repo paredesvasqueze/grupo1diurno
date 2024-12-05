@@ -37,9 +37,10 @@ namespace WebApi.Controllers
             return Ok(id);
         }
 
-        [HttpDelete("EliminarEmpleado")]
-        public IActionResult EliminarEmpleado(Empleado oEmpleado)
+        [HttpDelete("EliminarEmpleado/{nIdEmpleado}")]
+        public IActionResult EliminarEmpleado(Int32 nIdEmpleado)
         {
+            Empleado oEmpleado = new Empleado() { nIdEmpleado = nIdEmpleado };
             var id = _EmpleadoDomain.EliminarEmpleado(oEmpleado);
             return Ok(id);
         }

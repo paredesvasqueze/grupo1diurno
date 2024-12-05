@@ -63,12 +63,12 @@
                         <input type="number" class="form-control" id="nPrecio" name="nPrecio" required />
                     </div>
                     <div class="form-group">
-                        <label for="nIdCategoria">Producto Asociado</label>
+                        <label for="nIdCategoria">Categoria</label>
                         <select id="nIdCategoria" name="nIdCategoria" class="form-control" required>
                             <option value="">Seleccione un producto</option>
-                            @foreach (var producto in ViewBag.Productos as IEnumerable<Producto>)
+                            @foreach (var categoria in ViewBag.Categorias as IEnumerable<Categoria>)
                             {
-                                <option value="@producto.nIdProducto">@producto.cNombre</option>
+                                <option value="@categoria.nIdCategoria">@categoria.cCategoria</option>
                             }
                         </select>
                     </div>

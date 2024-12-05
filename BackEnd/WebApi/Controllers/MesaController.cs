@@ -36,9 +36,10 @@ namespace WebApi.Controllers
             return Ok(id);
         }
 
-        [HttpDelete("EliminarMesa")]
-        public IActionResult EliminarMesa(Mesa oMesa)
+        [HttpDelete("EliminarMesa/{nIdMesa}")]
+        public IActionResult EliminarMesa(Int32 nIdMesa)
         {
+            Mesa oMesa = new Mesa() { nIdMesa = nIdMesa };
             var id = _MesaDomain.EliminarMesa(oMesa);
             return Ok(id);
         }
