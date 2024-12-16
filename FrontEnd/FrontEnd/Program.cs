@@ -60,7 +60,8 @@ builder.Services.AddHttpClient<MesaService>();
 builder.Services.AddScoped<MesaService>();
 builder.Services.AddHttpClient<DetalleOrdenService>();
 builder.Services.AddScoped<DetalleOrdenService>();
-
+builder.Services.AddHttpClient<ConservaService>();
+builder.Services.AddScoped<ConservaService>();
 
 var app = builder.Build();
 

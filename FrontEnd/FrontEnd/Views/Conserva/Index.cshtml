@@ -1,0 +1,203 @@
+﻿@model IEnumerable<Conserva>
+@{
+    ViewData["Title"] = "Listado de Conservas";
+    Layout = "~/Views/Shared/_LayoutDashBoard.cshtml";
+}
+
+<h2>Listado de Conservas</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID Conserva</th>
+            <th>DescripcionConserva</th>
+            <th>FechaLote</th>
+            <th>FechaCapacidad</th>
+            <th>UnidadesProducidas</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.nIdConserva</td>
+                <td>@item.cDescripcionConserva</td>
+                <td>@item.dFechaLote</td>
+                <td>@item.dFechaCapacidad</td>
+                <td>@item.nUnidadesProducidas</td>
+                <td>
+                    <button class="btn btn-warning" onclick="openEditModal(@item.nIdConserva, @item.nIdConserva, '@item.cDescripcionConserva', '@item.dFechaLote', '@item.dFechaCapacidad', '@item.nUnidadesProducidas')">Editar</button>
+                    <button class="btn btn-danger" onclick="deleteConserva(@item.nIdConserva)">Eliminar</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<button class="btn btn-primary" onclick="openModal()">Nuevo2</button>
+
+<!-- Modal para Nueva Conserva -->
+<div class="modal fade" id="newConservaModal" tabindex="-1" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTitle">Nueva Conserva</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="newConservaForm">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="idConserva">IdConserva</label>
+                        <input type="number" class="form-control" id="conserva" name="nIdConserva" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="descripcionConserva">Descripcionconserva</label>
+                        <input type="text" class="form-control" id="descripcionConserva" name="cDescripcionconserva" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="fechaLote">FechaLote</label>
+                        <input type="date" class="form-control" id="fechaLote" name="dFechaLote" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="fechaCapacidad">FechaCapacidad</label>
+                        <input type="date" class="form-control" id="fechaCapacidad" name="dFechaCapacidad" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="unidadesProducidas">UnidadesProducidas</label>
+                        <input type="number" class="form-control" id="unidadesProducidas" name="nUnidadesProducidas" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" onclick="submitConserva()">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Modal para Editar Conserva -->
+<div class="modal fade" id="editConservaModal" tabindex="-1" role="dialog" aria-labelledby="editModalTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editModalTitle">Editar Conserva</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="editConservaForm">
+                <input type="hidden" id="editId" />
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="editDescripcionConserva">Descripcionconserva</label>
+                        <input type="text" class="form-control" id="editDescripcionConserva" name="cDescripcionConserva" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editFechaLote">FechaLote</label>
+                        <input type="date" class="form-control" id="idFechaLote" name="dFechaLote" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editFechaCapacidad">FechaCapacidad</label>
+                        <input type="date" class="form-control" id="idFechaCapacidad" name="dFechaCapacidad" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editUnidadesProducidas">UnidadesProducidas</label>
+                        <input type="number" class="form-control" id="editUnidadesProducidas" name="nUnidadesProducidas" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" onclick="submitEditConserva()">Guardar Cambios</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function openModal() {
+            //console.log("a");
+            $('#newConservaModal').modal('show');
+        }
+
+        function openEditModal(id, numero, conserva) {
+            document.getElementById('editId').value = id;
+            document.getElementById('editDescripcionConserva').value = DescripcionConserva;
+            document.getElementById('editFechaLote').value = FechaLote;
+            document.getElementById('editFechaCapacidad').value = FechaCapacidad;
+            document.getElementById('editUnidadesProducidas').value = UnidadesProducidas;
+            $('#editConservaModal').modal('show');
+        }
+
+        function submitConserva() {
+            const data = {
+                cDescripcionConserva: document.getElementById('descripcionConserva').value,
+                dFechaLote: document.getElementById('fechaLote').value,
+                dFechaCapacidad: document.getElementById('fechaCapacidad').value,
+                nUnidadesProducidas: document.getElementById('unidadesProducidas').value
+            };
+
+            fetch('/Conserva', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+                .then(response => {
+                    if (response.ok) {
+                        location.reload();
+                    } else {
+                        alert('Error al crear la Conserva.');
+                    }
+                });
+        }
+
+
+        function submitEditConserva() {
+            const data = {
+                nIdConserva: document.getElementById('editId').value,
+                cDescripcionConserva: document.getElementById('editDescripcionConserva').value,
+                 dFechaLote: document.getElementById('editFechaLote').value,
+                 dFechaCapacidad: document.getElementById('editFechaCapacidad').value,
+                 nUnidadesProducidas: document.getElementById('editUnidadProducidas').value
+            };
+
+            fetch('/Conserva', {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+                .then(response => {
+                    if (response.ok) {
+                        location.reload();
+                    } else {
+                        alert('Error al actualizar la conserva.');
+                    }
+                });
+        }
+
+        function deleteConserva(id) {
+            if (confirm("¿Estás seguro de que deseas eliminar esta Conserva?")) {
+                fetch(`/Conserva/${id}`, {
+                    method: 'DELETE'
+                })
+                    .then(response => {
+                        if (response.ok) {
+                            location.reload();
+                        } else {
+                            alert('Error al eliminar la Conserva.');
+                        }
+                    });
+            }
+        }
+
+       
+    </script>
+}

@@ -62,6 +62,8 @@ builder.Services.AddScoped<ReservaDomain>();
 builder.Services.AddScoped<DetalleOrdenRepository>();
 builder.Services.AddScoped<DetalleOrdenDomain>();
 
+builder.Services.AddScoped<ConservaRepository>();
+builder.Services.AddScoped<ConservaDomain>();
 
 // Registrar los controladores
 builder.Services.AddControllers();
